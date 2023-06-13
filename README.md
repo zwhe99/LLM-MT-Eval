@@ -29,3 +29,10 @@ in automatic metrics:
 * Ukrainian<->Czech
 * English->Croatian.
 
+
+
+### Results
+
+<p align="center">
+<img src="imgs/main.png" alt="main"/>
+</p>
