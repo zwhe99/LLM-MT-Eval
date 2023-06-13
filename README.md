@@ -34,5 +34,5 @@ in automatic metrics:
 ### Results
 
 <p align="center">
-<img src="imgs/main.png" alt="main"/>
+<img src="imgs/main.png" alt="main", width="600"/>
 </p>
