@@ -33,6 +33,34 @@ in automatic metrics:
 
 ### Results
 
+#### Full results
+
 <p align="center">
 <img src="imgs/main.png" alt="main", width="600"/>
+</p>
+
+
+
+#### **Average performance**
+
+**All language pairs (except for English->Croatian)**
+
+<p align="center">
+<img src="imgs/avg_all.png" alt="avg_all", width="400"/>
+</p>
+
+**High resource**
+
+* En<->De, En<->Cs, En<->Ru, En<->Zh
+
+<p align="center">
+<img src="imgs/avg_high.png" alt="avg_high", width="400"/>
+</p>
+
+**Medium resource**
+
+* De<->Fr, En<->Ja, En<->Uk
+
+<p align="center">
+<img src="imgs/avg_high.png" alt="avg_mid", width="400"/>
 </p>
