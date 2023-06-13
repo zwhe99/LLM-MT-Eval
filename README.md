@@ -55,7 +55,7 @@ output/
 
 #### **Average performance**
 
-**All language pairs (except for English->Croatian)**
+**All language pairs (except English->Croatian)**
 
 <p align="center">
 <img src="imgs/avg_all.png" alt="avg_all", width="400"/>
