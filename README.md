@@ -19,13 +19,13 @@ in automatic metrics:
 
  on WMT22 general translation tasks:
 
-* English$\Leftrightarrow$German
-* English$\Leftrightarrow$Czech
-* English$\Leftrightarrow$Russian
-* English$\Leftrightarrow$Chinese
-* German$\Leftrightarrow$French
-* English$\Leftrightarrow$Japanese
-* Ukrainian$\Leftrightarrow$English
-* Ukrainian$\Leftrightarrow$Czech
-* English$\Rightarrow$Croatian.
+* English<->German
+* English<->Czech
+* English<->Russian
+* English<->Chinese
+* German<->French
+* English<->Japanese
+* Ukrainian<->English
+* Ukrainian<->Czech
+* English->Croatian.
 
