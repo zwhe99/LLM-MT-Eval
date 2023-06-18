@@ -63,7 +63,7 @@ output/
 **All language pairs** （except for those not supported by DeepL）
 
 <p align="center">
-<img src="imgs/avg_all.png" alt="avg_all", width="500"/>
+<img src="imgs/avg_all.png" alt="avg_all", width="600"/>
 </p>
 
 **High resource**
