@@ -258,7 +258,7 @@ def check_equal_num_lines(lst):
 def parse_args():
     parser = argparse.ArgumentParser("", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("--comet-model-name", type=str, default="Unbabel/wmt22-comet-da")
-    parser.add_argument("--bleurt-ckpt", type=str, default="/apdcephfs_cq2/share_916081/timurhe/bleurt/BLEURT-20")
+    parser.add_argument("--bleurt-ckpt", type=str, required=True)
     parser.add_argument("--batch-size", type=int, default=200)
     return parser.parse_args()
 
@@ -269,46 +269,46 @@ if __name__ == "__main__":
     batch_size = args.batch_size
 
 
-    # # Full results
-    # for metric in METRICS:
-    #     data = {
-    #         'System': LANG_PAIR2SPLIT.keys(),
-    #     }
-    #     with tqdm(total=len(SYSTEMS) * len(LANG_PAIR2SPLIT), desc=metric) as pbar:
-    #         for system in SYSTEMS:
-    #             data[system] = []
-    #             for lang_pair in LANG_PAIR2SPLIT.keys():
-    #                 split = LANG_PAIR2SPLIT[lang_pair]
-    #                 src_lang, tgt_lang = lang_pair.split('-')
+    # Full results
+    for metric in METRICS:
+        data = {
+            'System': LANG_PAIR2SPLIT.keys(),
+        }
+        with tqdm(total=len(SYSTEMS) * len(LANG_PAIR2SPLIT), desc=metric) as pbar:
+            for system in SYSTEMS:
+                data[system] = []
+                for lang_pair in LANG_PAIR2SPLIT.keys():
+                    split = LANG_PAIR2SPLIT[lang_pair]
+                    src_lang, tgt_lang = lang_pair.split('-')
 
-    #                 src_lines = readlines(os.path.join(RAW_DATA_DIR, f"{split}.{lang_pair}.{src_lang}"))
-    #                 ref_lines = readlines(os.path.join(RAW_DATA_DIR, f"{split}.{lang_pair}.{tgt_lang}"))
-    #                 sys_lines = readlines(os.path.join(OUTPUT_DIR, system, f"{split}.{lang_pair}.{tgt_lang}"))
+                    src_lines = readlines(os.path.join(RAW_DATA_DIR, f"{split}.{lang_pair}.{src_lang}"))
+                    ref_lines = readlines(os.path.join(RAW_DATA_DIR, f"{split}.{lang_pair}.{tgt_lang}"))
+                    sys_lines = readlines(os.path.join(OUTPUT_DIR, system, f"{split}.{lang_pair}.{tgt_lang}"))
 
-    #                 if check_equal_num_lines([src_lines, ref_lines, sys_lines]):
-    #                     scorer = eval(metric)
-    #                     score = scorer(**{
-    #                         "sys_lines": sys_lines,
-    #                         "src_lines": src_lines,
-    #                         "ref_lines": ref_lines,
-    #                         "comet_model_name": comet_model_name,
-    #                         "cache_dir": CACHE_DIR,
-    #                         "bleurt_ckpt": bleurt_ckpt,
-    #                         "batch_size": batch_size,
-    #                         "tgt_lang": tgt_lang
-    #                     })
-    #                 else:
-    #                     score = "NA"
-    #                 data[system].append(score)
-    #                 pbar.update(1)
-    #     df = pd.DataFrame(data)
+                    if check_equal_num_lines([src_lines, ref_lines, sys_lines]):
+                        scorer = eval(metric)
+                        score = scorer(**{
+                            "sys_lines": sys_lines,
+                            "src_lines": src_lines,
+                            "ref_lines": ref_lines,
+                            "comet_model_name": comet_model_name,
+                            "cache_dir": CACHE_DIR,
+                            "bleurt_ckpt": bleurt_ckpt,
+                            "batch_size": batch_size,
+                            "tgt_lang": tgt_lang
+                        })
+                    else:
+                        score = "NA"
+                    data[system].append(score)
+                    pbar.update(1)
+        df = pd.DataFrame(data)
 
-    #     for system in SYSTEMS:
-    #         df[system] = pd.to_numeric(df[system], errors='coerce')
-    #         df[system] = df[system].round(1)
-    #         df.fillna('NA', inplace=True)
-    #     print(f"{metric}: ")
-    #     print(df.T.to_latex(header=None))
+        for system in SYSTEMS:
+            df[system] = pd.to_numeric(df[system], errors='coerce')
+            df[system] = df[system].round(1)
+            df.fillna('NA', inplace=True)
+        print(f"{metric}: ")
+        print(df.T.to_latex(header=None))
 
 
     print("AVG: ALL_LANG_PAIRS_SUPPORTED")
